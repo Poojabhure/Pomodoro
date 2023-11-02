@@ -1,0 +1,332 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=body, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+    body{
+        background-color: rgb(32, 13, 51);
+        height: 100%;
+        width: 100%;
+        align-items: center;
+    }
+    .container{
+        display: flex;
+    }
+    
+    p{
+        font-family: 'Franklin Gothic Medium',  sans-serif;
+      color:azure;
+      text-align: center;
+      margin-top: 4%;
+      
+       }
+       
+        .button {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+}
+        
+ .button,p{
+        color: rgb(255, 35, 141);
+       }
+       
+#work,
+#break {
+    margin:  10px;
+    margin-top: 55px;
+    width: 100px; 
+    padding: 10px; 
+    cursor: pointer;
+    text-align: center; 
+    color: #fff; 
+    background-color: #20465f; 
+    border: 2px solid #ff5733;
+   
+}
+.circle{
+    margin-top:45px;
+        width: 180px; 
+    height: 160px;
+    background-color: #20465f; 
+    border-radius: 50%;
+    margin-left:42%; 
+    border: 2px solid #ff5733;
+    cursor: pointer;
+       }
+
+       .timer {
+            width: 100%;
+            text-align: center;
+            position: absolute;
+            
+        }
+        .time {
+            font-size: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 25vh;
+        }
+
+        .control button{
+           
+         margin-left:45%;
+         
+            border:none;
+            background-color: transparent;
+           
+             }
+       
+    #start,
+    #reset{
+        margin-top:18%;  
+     border-radius: 28%;
+    width: 120px; 
+    padding: 12px; 
+    cursor: pointer;
+    text-align: center; 
+    color: #fff; 
+    background-color: #20465f; 
+    border: 2px solid #ff5733;
+
+}
+
+    
+       
+</style>
+<section>
+    <div id="container">
+       -heading pomodoro-->
+       <!-- <p>pomodoro</p>
+
+        <!--buttons work &break
+       - <div class="button">
+            <p id="work">work</p><br/>
+            <p id="break">break</p>
+        </div>-->
+        
+        <!--timer display
+          <div class="timer">
+            <div class="circle">
+                <div class="time">
+                    <p id="minutes">25</p>
+                    <p>:</p>
+                    <p id="seconds">00</p>
+                    
+                </div>
+            </div>
+          </div>-->
+    <!--pause button
+    <div class="control">
+        <button id="start" onclick="start()"><img src="play.png.svg" height="8%" width="22%"></button>
+        <button id="reset" onclick="resetTimer()"><img src="arrow.png.svg" height="8%" width="22%" ></button>
+    
+
+    
+    </div>
+    </div>
+</section>    
+
+
+    
+</body>
+</html>
+-->
+<!---222222222222222222222-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=body, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        background-color: rgb(32, 13, 51);
+        height: 100%;
+        width: 100%;
+        align-items: center;
+    }
+
+    .container {
+        display: flex;
+    }
+
+    p {
+        font-family: 'Franklin Gothic Medium', sans-serif;
+        color: azure;
+        text-align: center;
+        margin-top: 4%;
+    }
+
+    .button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .button,
+    p {
+        color: rgb(255, 35, 141);
+    }
+
+    #work,
+    #break {
+        margin: 10px;
+        margin-top: 55px;
+        width: 100px;
+        padding: 10px;
+        cursor: pointer;
+        text-align: center;
+        color: #fff;
+        background-color: #20465f;
+        border: 2px solid #ff5733;
+    }
+
+    .circle {
+        margin-top: 45px;
+        width: 180px;
+        height: 160px;
+        background-color: #20465f;
+        border-radius: 50%;
+        margin-left: 42%;
+        border: 2px solid #ff5733;
+        cursor: pointer;
+    }
+
+    .timer {
+        width: 100%;
+        text-align: center;
+        position: absolute;
+    }
+
+    .time {
+        font-size: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 25vh;
+    }
+
+    .control {
+        text-align: center;
+    }
+
+    .control button {
+        border: none;
+        background-color: transparent;
+    }
+
+    #start,
+    #reset {
+        margin-top: 2%; /* Adjust the margin-top for spacing between buttons */
+        border-radius: 28%;
+        width: 120px;
+        padding: 12px;
+        cursor: pointer;
+        text-align: center;
+        color: #fff;
+        background-color: #20465f;
+        border: 2px solid #ff5733;
+    }
+
+    .button-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 17%;
+    }
+</style>
+
+<script>
+    // JavaScript code for the Pomodoro timer
+    let timerInterval;
+    let minutes = 25;
+    let seconds = 0;
+    let isRunning = false;
+
+    function start() {
+        if (!isRunning) {
+            isRunning = true;
+            timerInterval = setInterval(updateTimer, 1000);
+        }
+    }
+
+    function resetTimer() {
+        clearInterval(timerInterval);
+        isRunning = false;
+        minutes = 25;
+        seconds = 0;
+        updateTimerDisplay();
+    }
+
+    function updateTimer() {
+        if (minutes === 0 && seconds === 0)
+         {
+                      resetTimer();
+        } 
+        else if (seconds === 0) {
+            minutes--;
+            seconds = 59;
+        } 
+        else {
+            seconds--;
+        }
+        updateTimerDisplay();
+    }
+
+    function updateTimerDisplay() {
+        const minutesDisplay = String(minutes).padStart(2, '0');
+        const secondsDisplay = String(seconds).padStart(2, '0');
+        document.getElementById('minutes').textContent = minutesDisplay;
+        document.getElementById('seconds').textContent = secondsDisplay;
+    }
+</script>
+<section>
+    <div id="container">
+        <!-- heading pomodoro-->
+        <p>Pomodoro</p>
+
+        <!-- buttons work &break-->
+        <div class="button">
+            <p id="work">work</p><br/>
+            <p id="break">break</p>
+        </div>
+
+        <!-- timer display-->
+        <div class="timer">
+            <div class="circle">
+                <div class="time">
+                    <p id="minutes">25</p>
+                    <p>:</p>
+                    <p id="seconds">00</p>
+                </div>
+            </div>
+        </div>
+        <!-- pause button container -->
+        <div class="button-container">
+            <div class="control">
+                <button id="reset" onclick="resetTimer()"><img src="arrow.png.svg" height="8%" width="22%"></button>
+            </div>
+            <div class="control">
+                <button id="start" onclick="start()"><img src="play.png.svg" height="8%" width="22%"></button>
+            </div>
+        </div>
+            
+        </div>
+    </div>
+</section>
+
+
+</body>
+</html>
+
+
+
+
